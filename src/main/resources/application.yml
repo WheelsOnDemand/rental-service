@@ -1,0 +1,34 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: rentalservice
+
+  cloud:
+    config:
+      profile: prod
+
+  kubernetes:
+    discovery:
+      enabled: true
+      all-namespaces: true
+
+  discovery:
+    client:
+      health-indicator:
+        enabled: false
+
+  config:
+    import: configserver:${CONFIG_SERVER_URL:http://localhost:9296}
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  sql:
+    init:
+      platform: mysql
+      mode: always
