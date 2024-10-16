@@ -130,7 +130,7 @@
 				<version>3.4.1</version>
 				<configuration>
 					<to>
-						<image>wheelsondemand/rentalservice</image>
+						<image>${REPO_URL}/rentalservice</image>
 					</to>
 				</configuration>
 			</plugin>
