@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rental-service-app
+spec:
+  selector:
+    matchLabels:
+      app: rental-service-app
+  template:
+    metadata:
+      labels:
+        app: rental-service-app
+    spec:
+      containers:
+      - name: rental-service-app
+        image: IMAGE_URL/rentalservice
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8084
+        env:
+        - name: CONFIG_SERVER_URL
+          valueFrom:
+            configMapKeyRef:
+              name: config-cm
+              key: CONFIG_URL
+        - name: DB_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: mysql-cm
+              key: HOSTNAME
+        - name: SPRING_PROFILES_ACTIVE
+          valueFrom: 
+            configMapKeyRef:
+              name: common-cm
+              key: SPRING_PROFILES_ACTIVE
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: rental-service-svc
+spec:
+  selector:
+    app: rental-service-app
+  ports:
+  - port: 80
+    targetPort: 8084
