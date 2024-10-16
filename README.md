@@ -11,7 +11,7 @@ Rental service allows you to create, read, update, and delete rentals.
         </tr>
     </thead>
     <tbody>
-<code>http://[host]:[port]/rental-service/api/v1</code>
+<code>http://[host]:[port]/wheelsondemand/rental/api/rentals</code>
         <tr>
             <td>$\textcolor{cornflowerblue}{GET}$</td>
             <td>/rentals</td>
